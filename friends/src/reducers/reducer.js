@@ -1,6 +1,0 @@
-
-
-const initialstate = {
-    
-    friends: []
-}
