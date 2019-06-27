@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
-import {SUCCESS} from '../actions/'
+import {getFriends, logInUser} from '../actions'
 
  class Login extends Component {
      state = {
@@ -9,27 +9,31 @@ import {SUCCESS} from '../actions/'
          password: ''
          }
      }
-     handlechange = (e) =>{
-        e.preventDefault();
-        this.setState({
-            creds:{
+    
+   handlechange = (e) => {
+      e.preventDefault();
+      this.setState({
+      creds:{
             ...this.state.creds,
             [e.target.name] : e.target.value
             }
         })
      }
-     handleSubmit = (e) =>{
-         e.preventDefault();
-        this.props.success(this.state.creds)
+ 
+ handleSubmit = (e) => {
+   e.preventDefault();
+   this.props.logInUser(this.state.creds)
+  
+ }
 
-     }
+componentDidMount() {
+   this.props.getFriends()
+   }
 
   render() {
-      if(this.props.isloggedin){
-        this.props.history.push("/friendlist")
-      }
+      
 
-    console.log(this.props.loggedin, this.props.isfetching)
+    console.log(this.props)
     return (
       <div>
         <form onSubmit ={this.handleSubmit}>
@@ -59,11 +63,12 @@ import {SUCCESS} from '../actions/'
   }
 }
  const mapStateToProps = state =>({
-      isloggedin:state.loggingIn,
-      isfetching:state.isfetching
+     isfetching:state.isfetching,
+     isLoggingIn: state.isLoggingIn,
+     token:state.token
  })
 
 export default connect (
     mapStateToProps,
-    {SUCCESS}
+    {getFriends,logInUser}
 )(Login)
