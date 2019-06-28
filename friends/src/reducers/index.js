@@ -1,4 +1,4 @@
-import { FETCHING, SUCCESS, FAILURE,LOGING_IN, PROCESSING_LOGIN, LOGINGIN_FAILURE} from '../actions';
+import { FETCHING, SUCCESS, FAILURE,LOGING_IN, PROCESSING_LOGIN, LOGINGIN_FAILURE ,ADD_NEW_FRIEND_START, ADD_NEW_FRIEND_SUCCESS, ADD_NEW_FRIEND_FAILURE} from '../actions';
 
 
 const initialstate = {
@@ -7,6 +7,7 @@ const initialstate = {
     isFetching: false,
     err: '',
     isLoggingIn: false,
+    isAdding: false,
     token: '',
     err: null
 }
@@ -14,7 +15,7 @@ const initialstate = {
 
 const reducer = (state = initialstate, action) => {
     switch(action.type) {
-        // friends get endpoint
+        // get friends endpoint
         case FETCHING:
            return {
                ...state, 
@@ -52,7 +53,26 @@ const reducer = (state = initialstate, action) => {
             err: action.payload,
             }
         
+        case ADD_NEW_FRIEND_START:
+             return {
+                    ...state,
+                    error: action.payload,
+                    isAdding:true
+                }
+         case ADD_NEW_FRIEND_SUCCESS:
+              return {
+                    ...state,
+                    isAdding:false,
+                    error: null,
+                    friends: action.payload
+                }
 
+         case ADD_NEW_FRIEND_FAILURE:
+              return {
+                   ...state,
+                   error: action.payload,
+                   isAdding:false
+                }
         default:
             return state
     }

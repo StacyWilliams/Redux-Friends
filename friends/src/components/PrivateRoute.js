@@ -8,7 +8,7 @@ import FriendsListView from './FriendsListView';
        {...rest} 
        render ={props => 
         localStorage.getItem('token') ? (
-            <Component {...props} />
+            <FriendsListView  {...props} />
         ) : (
             <Redirect to='/api/login' />
    ) }

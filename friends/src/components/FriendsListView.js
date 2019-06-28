@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
         console.log('props View' ,this.props.friends)
       return (
           <div>
-              <FriendsList />
+              <FriendsList friends={this.props.friends}/>
           </div>
       )
     }

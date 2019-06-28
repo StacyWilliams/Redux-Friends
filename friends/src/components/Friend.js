@@ -1,9 +1,13 @@
 import React from 'react'
 
-export default function Friend() {
+ const Friend = props => {
   return (
     <div>
-      <h2>Coming soon...</h2>
+      <h3>{props.friends.friend}</h3>
+      <h4> {props.friend.age} </h4>
+      <p>  {props.friend.email} </p>
     </div>
   )
 }
+
+export default Friend;

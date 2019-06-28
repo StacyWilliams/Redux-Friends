@@ -10,7 +10,7 @@ import {getFriends, logInUser} from '../actions'
          }
      }
     
-   handlechange = (e) => {
+ handlechange = (e) => {
       e.preventDefault();
       this.setState({
       creds:{
